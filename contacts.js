@@ -1,4 +1,5 @@
 const fs = require("fs");
+const validator = require("validator");
 
 const dirPath = "./data";
 if (!fs.existsSync(dirPath)) {
@@ -24,6 +25,18 @@ const saveContact = (name, email, phoneNumber) => {
     return false;
   }
 
+  if (email) {
+    if (!validator.isEmail(email)) {
+      console.log("email tidak valid");
+      return false;
+    }
+  }
+
+  if (!validator.isMobilePhone(phoneNumber, "id-ID")) {
+    console.log("nomor hp tidak valid");
+    return false;
+  }
+
   contacts.push(contact);
 
   fs.writeFileSync("data/contacts.json", JSON.stringify(contacts));
@@ -31,4 +44,4 @@ const saveContact = (name, email, phoneNumber) => {
   console.log("Terima kasih sudah memasukkan data.");
 };
 
-module.exports = {saveContact };
+module.exports = { saveContact };

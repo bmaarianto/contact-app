@@ -1,48 +1,57 @@
 # 📇 Contact CLI App
 
-A simple Command Line Interface (CLI) application built with **Node.js** and **Yargs** to store contact information (name, email, and phone number) in a JSON file.
+A simple Node.js Command Line Interface (CLI) app to store contact information (name, email, and phone number) in a JSON file.
 
 ## 🚀 Features
 
-- Add contact via CLI command
-- Save data to `contacts.json` in the `data/` folder
-- Automatically creates necessary folders/files if missing
-- Supports optional email input
-- Modular code (separated logic into `contacts.js`)
+- Add contact data through terminal using Yargs
+- Automatically saves contacts to `data/contacts.json`
+- Automatically creates `data` folder and JSON file if they don't exist
+- Validates:
+  - Email format (optional field)
+  - Phone number format (must be Indonesian number)
+  - Prevents duplicate phone numbers
 
 ## 🛠️ How to Use
 
-1. Clone this repo:
+### 1. Install dependencies
 
-```bash
-git clone https://github.com/your-username/contact-app.git
-cd contact-app
+```
+npm install
 ```
 
-2. Run the command to add a contact:
+### 2. Run the app
 
-```bash
-node app.js add --name="John Doe" --email="john@example.com" --phoneNumber="08123456789"
+```
+node app.js add --name="John Doe" --email="john@example.com" --phoneNumber="081234567890"
+
 ```
 
-Email is optional. You can skip it like this:
+Email is optional, but name and phone number are required.
 
-```bash
-node app.js add --name="John Doe" --phoneNumber="08123456789"
+Example without email:
+
+```
+node app.js add --name="Jane Doe" --phoneNumber="082112345678"
 ```
 
-## ✅ Sample Output
+### 3. Output
 
-```json
-[
-  {
-    "name": "John Doe",
-    "email": "john@example.com",
-    "phoneNumber": "08123456789"
-  }
-]
+If successful:
+
+```
+✅ Terima kasih, kontak berhasil disimpan.
 ```
 
-## 🔧 Requirements
+If error (e.g. duplicate or invalid format):
 
-- Node.js (latest version recommended)
+```
+❌ Kontak sudah terdaftar
+❌ Email tidak valid
+❌ Nomor HP tidak valid
+```
+
+## 📦 Dependencies
+
+- yargs
+- validator
