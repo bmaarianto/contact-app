@@ -15,8 +15,8 @@ A simple Command Line Interface (CLI) application built with **Node.js** and **Y
 1. Clone this repo:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/your-username/contact-app.git
+cd contact-app
 ```
 
 2. Run the command to add a contact:
