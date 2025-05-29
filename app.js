@@ -1,6 +1,11 @@
 const { type } = require("os");
 const yargs = require("yargs");
-const { saveContact } = require("./contacts");
+const {
+  saveContact,
+  listContact,
+  detailContact,
+  deleteContact,
+} = require("./contacts");
 
 yargs.command({
   command: "add",
@@ -29,6 +34,45 @@ yargs.command({
       phoneNumber: argv.phoneNumber,
     };
     saveContact(argv.name, argv.email, argv.phoneNumber);
+  },
+});
+yargs.demandCommand();
+
+yargs.command({
+  command: "list",
+  describe: "menampilkan isi kontak",
+  handler() {
+    listContact();
+  },
+});
+
+yargs.command({
+  command: "detail",
+  describe: "menampilkan detail kontak",
+  builder: {
+    name: {
+      describe: "nama lengkap",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    detailContact(argv.name);
+  },
+});
+
+yargs.command({
+  command: "delete",
+  describe: "menghapus kontak",
+  builder: {
+    name: {
+      describe: "nama lengkap",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler(argv) {
+    deleteContact(argv.name);
   },
 });
 

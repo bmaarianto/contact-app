@@ -1,57 +1,50 @@
 # 📇 Contact CLI App
 
-A simple Node.js Command Line Interface (CLI) app to store contact information (name, email, and phone number) in a JSON file.
+A simple Command Line Interface (CLI) application built with **Node.js** to manage contact information. Contacts are stored in a local JSON file.
 
 ## 🚀 Features
 
-- Add contact data through terminal using Yargs
-- Automatically saves contacts to `data/contacts.json`
-- Automatically creates `data` folder and JSON file if they don't exist
-- Validates:
-  - Email format (optional field)
-  - Phone number format (must be Indonesian number)
-  - Prevents duplicate phone numbers
+- Add new contact (name, email, phone number)
+- List all saved contacts
+- Show detailed info for a specific contact
+- Delete contact by name
+- Automatically creates the necessary folders and JSON file
 
-## 🛠️ How to Use
+## 🛠️ Technologies Used
 
-### 1. Install dependencies
+- Node.js
+- [Yargs](https://github.com/yargs/yargs) for CLI command parsing
+- [Validator](https://www.npmjs.com/package/validator) for email and phone number validation
+- File System (fs) for JSON read/write
+
+## 📦 Installation
+
+### 1. Clone this repository:
+
+```
+git clone https://github.com/bmaarianto/contact-app.git
+```
+
+### 2. Install dependencies
 
 ```
 npm install
 ```
 
-### 2. Run the app
+## 🧪 Usage
 
 ```
+# Add a new contact
 node app.js add --name="John Doe" --email="john@example.com" --phoneNumber="081234567890"
 
+# List all contacts
+node app.js list
+
+# Show detail of a contact
+node app.js detail --name="John Doe"
+
+# Delete a contact
+node app.js delete --name="John Doe"
 ```
 
-Email is optional, but name and phone number are required.
-
-Example without email:
-
-```
-node app.js add --name="Jane Doe" --phoneNumber="082112345678"
-```
-
-### 3. Output
-
-If successful:
-
-```
-✅ Terima kasih, kontak berhasil disimpan.
-```
-
-If error (e.g. duplicate or invalid format):
-
-```
-❌ Kontak sudah terdaftar
-❌ Email tidak valid
-❌ Nomor HP tidak valid
-```
-
-## 📦 Dependencies
-
-- yargs
-- validator
+📁 All contact data will be saved in data/contacts.json.
